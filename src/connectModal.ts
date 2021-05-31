@@ -15,7 +15,7 @@ const hoistStatics = require('hoist-non-react-statics');
 
 const INITIAL_MODAL_STATE = {};
 
-export default function connectModal({
+export default function connectModal<T>({
   name,
   getModalState = state => state.modal,
   resolve,
@@ -23,7 +23,7 @@ export default function connectModal({
 }: ModalConfig): InjectedWrapperComponent {
   return WrappedComponent => {
     class ConnectModal extends React.Component<
-      ConnectModalProps,
+      ConnectModalProps & T,
       ConnectModalState
     > {
       static displayName = `ConnectModal(${getDisplayName(WrappedComponent)})`;
